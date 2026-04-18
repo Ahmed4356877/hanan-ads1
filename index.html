@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Hanan Digital Solutions: Dual-expertise agency. AI Engineering + Growth Marketing. Interactive strategy modals, team portfolios, payment solutions.">
+  <meta name="author" content="Ahmed Hbaly & Hanane Hbaly">
+  <title>Hanan Digital | Strategy Modals + Dual-Expertise Popups</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #0a1c2f; line-height: 1.5; scroll-behavior: smooth; transition: background-color 0.3s ease, color 0.3s ease; }
+    body.dark-mode { background-color: #0a0f1a; color: #e2e8f0; }
+    body.dark-mode .hero { background: linear-gradient(120deg, #0d1425 0%, #0a0f1c 100%); }
+    body.dark-mode .service-card, body.dark-mode .contact-flex, body.dark-mode .metrics-grid, body.dark-mode .trust-bar, body.dark-mode .team-card { background: #111827; border-color: #1f2937; }
+    body.dark-mode .service-card p, body.dark-mode .section-sub, body.dark-mode .hero-content p, body.dark-mode .team-bio p { color: #9ca3af; }
+    body.dark-mode .service-card h3, body.dark-mode .section-title, body.dark-mode .hero-content h1, body.dark-mode .team-card h3 { color: #f0f9ff; }
+    body.dark-mode .lang-switcher { background: #1f2a3a; }
+    body.dark-mode .modal-glass { background: rgba(17, 24, 39, 0.98); border-color: var(--cyan); }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+    :root { --deep-blue: #0B2B40; --cyan: #00E5FF; --cyan-dark: #00b4cc; --gray-light: #F5F8FC; --gray-border: #e2e8f0; --text-muted: #4a627a; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 40px; font-weight: 600; font-size: 1rem; transition: all 0.25s ease; text-decoration: none; cursor: pointer; border: none; }
+    .btn-primary { background: var(--cyan); color: #0a1c2f; box-shadow: 0 8px 18px rgba(0, 229, 255, 0.25); }
+    .btn-primary:hover { background: var(--cyan-dark); transform: translateY(-2px); }
+    .navbar { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--deep-blue) 0%, #0b4b6e 100%); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .logo span { color: var(--cyan); background: none; }
+    .nav-controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .lang-switcher { display: flex; gap: 8px; background: var(--gray-light); padding: 5px 10px; border-radius: 60px; }
+    .lang-btn { background: none; border: none; font-weight: 600; font-size: 0.85rem; cursor: pointer; padding: 5px 12px; border-radius: 40px; color: var(--text-muted); transition: 0.2s; }
+    .lang-btn.active { background: var(--cyan); color: var(--deep-blue); }
+    .darkmode-toggle { background: var(--gray-light); border: none; border-radius: 60px; width: 44px; height: 44px; cursor: pointer; font-size: 1.3rem; }
+    .hero { padding: 60px 0 80px 0; background: linear-gradient(120deg, #ffffff 0%, #f2f8fe 100%); }
+    .hero-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
+    .hero-content { flex: 1.2; }
+    .hero-badge { background: rgba(0, 229, 255, 0.12); display: inline-block; padding: 6px 16px; border-radius: 40px; font-size: 0.85rem; font-weight: 600; margin-bottom: 24px; color: var(--deep-blue); }
+    .hero-content h1 { font-size: 3.3rem; font-weight: 800; line-height: 1.2; margin-bottom: 24px; color: var(--deep-blue); }
+    .hero-content p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 32px; max-width: 90%; }
+    .section { padding: 80px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; font-weight: 700; color: var(--deep-blue); margin-bottom: 16px; }
+    .section-sub { text-align: center; color: var(--text-muted); max-width: 680px; margin: 0 auto 56px auto; font-size: 1.1rem; }
+    .cards-grid { display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; }
+    .service-card { background: white; border-radius: 32px; padding: 32px 28px; flex: 1 1 280px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.05); border: 1px solid var(--gray-border); transition: all 0.3s; cursor: pointer; }
+    .service-card:hover { transform: translateY(-8px); border-color: var(--cyan); box-shadow: 0 25px 40px -12px rgba(0,229,255,0.2); }
+    .service-icon { font-size: 2.8rem; color: var(--cyan); margin-bottom: 24px; }
+    .business-value { background: rgba(0,229,255,0.08); padding: 8px 12px; border-radius: 20px; margin-top: 16px; font-size: 0.85rem; font-weight: 600; color: var(--cyan-dark); }
+    .killer-card { background: linear-gradient(110deg, var(--deep-blue) 0%, #0f3b4f 100%); color: white; border-radius: 48px; margin: 40px 0 60px 0; padding: 64px 48px; position: relative; overflow: hidden; }
+    .killer-content { max-width: 80%; }
+    .metrics-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 32px; background: var(--gray-light); border-radius: 40px; padding: 48px 32px; margin: 60px 0; text-align: center; }
+    .metric-item h3 { font-size: 2.5rem; font-weight: 800; color: var(--cyan); }
+    .team-grid { display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; margin: 40px 0; }
+    .team-card { background: var(--gray-light); border-radius: 36px; padding: 32px 28px; flex: 1 1 360px; border: 1px solid var(--gray-border); transition: all 0.3s; cursor: pointer; }
+    .team-card:hover { transform: translateY(-8px); border-color: var(--cyan); }
+    .team-avatar { width: 130px; height: 130px; background: var(--deep-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 3.8rem; color: var(--cyan); }
+    .team-card h3 { text-align: center; margin-bottom: 8px; }
+    .team-title { text-align: center; font-weight: 600; color: var(--cyan-dark); margin-bottom: 20px; font-size: 0.9rem; }
+    .team-bio { text-align: center; color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem; }
+    .team-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+    .team-badges span { background: rgba(0,229,255,0.15); padding: 6px 14px; border-radius: 40px; font-size: 0.75rem; font-weight: 600; color: var(--cyan-dark); }
+    /* Social Icons for Team */
+    .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 8px; }
+    .social-icon { background: rgba(0, 229, 255, 0.1); width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--cyan); transition: all 0.25s ease; text-decoration: none; border: 1px solid transparent; }
+    .social-icon:hover { background: var(--cyan); color: var(--deep-blue); transform: translateY(-3px); border-color: var(--cyan); }
+    body.dark-mode .social-icon { background: rgba(0, 229, 255, 0.2); }
+    body.dark-mode .social-icon:hover { background: var(--cyan); color: #0a1c2f; }
+    /* Modals: Strategy + Portfolio Glassmorphism */
+    .strategy-modal, .portfolio-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.75); backdrop-filter: blur(12px); z-index: 2000; justify-content: center; align-items: center; }
+    .modal-glass { background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(20px); border-radius: 48px; max-width: 720px; width: 90%; max-height: 85vh; overflow-y: auto; border: 1px solid rgba(0,229,255,0.5); box-shadow: 0 30px 50px -12px rgba(0,0,0,0.3); }
+    body.dark-mode .modal-glass { background: rgba(17, 24, 39, 0.98); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 28px 32px 12px 32px; border-bottom: 1px solid rgba(0,229,255,0.2); }
+    .modal-header h3 { font-size: 1.8rem; font-weight: 800; color: var(--deep-blue); }
+    body.dark-mode .modal-header h3 { color: var(--cyan); }
+    .close-modal-icon { font-size: 2rem; cursor: pointer; transition: 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 60px; background: rgba(0,0,0,0.05); }
+    .close-modal-icon:hover { background: var(--cyan); color: var(--deep-blue); transform: rotate(90deg); }
+    .modal-body { padding: 24px 32px 40px 32px; }
+    .strategy-block { display: flex; gap: 20px; margin-bottom: 32px; align-items: flex-start; }
+    .strategy-icon { font-size: 2.2rem; min-width: 60px; text-align: center; }
+    .strategy-text h4 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+    .strategy-text p { color: var(--text-muted); line-height: 1.5; }
+    body.dark-mode .strategy-text p { color: #cbd5e1; }
+    .roi-badge { background: rgba(0,229,255,0.15); display: inline-block; padding: 8px 18px; border-radius: 60px; font-size: 0.8rem; font-weight: 700; margin-top: 16px; color: var(--cyan-dark); }
+    .contact-flex { display: flex; flex-wrap: wrap; gap: 48px; background: white; border-radius: 32px; overflow: hidden; border: 1px solid var(--gray-border); }
+    .contact-info { flex: 1; padding: 48px 40px; }
+    .map-container { flex: 1; min-height: 320px; }
+    .map-container iframe { width: 100%; height: 100%; min-height: 320px; border: 0; }
+    footer { text-align: center; padding: 32px 0 24px; border-top: 1px solid var(--gray-border); margin-top: 40px; }
+    .trust-bar { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin: 24px 0 16px; font-size: 1.8rem; color: var(--text-muted); }
+    .float-whatsapp { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100; transition: 0.2s; animation: pulse 2s infinite; text-decoration: none; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+    .lead-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
+    .lead-modal-content { background: white; max-width: 550px; width: 90%; border-radius: 40px; padding: 32px; border-top: 5px solid var(--cyan); }
+    .form-group { margin-bottom: 18px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border-radius: 28px; border: 1px solid var(--gray-border); font-family: 'Inter', sans-serif; }
+    .submit-btn { background: var(--deep-blue); color: white; width: 100%; padding: 14px; border-radius: 40px; font-weight: 700; cursor: pointer; border: none; }
+    .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 3000; display: none; justify-content: center; align-items: center; }
+    .success-card { background: #0B2B40; padding: 40px; border-radius: 48px; text-align: center; }
+    .signature-line { margin-top: 24px; padding-top: 20px; border-top: 1px dashed rgba(0,229,255,0.3); font-size: 0.8rem; text-align: center; color: #6c7a8e; }
+    .signature-line span { font-weight: 700; color: var(--cyan); cursor: default; transition: 0.2s; }
+    .signature-line span:hover { color: var(--cyan-dark); text-shadow: 0 0 4px rgba(0,229,255,0.5); }
+    @media (max-width: 780px) { .container { padding: 0 24px; } .hero-content h1 { font-size: 2.3rem; } .killer-content { max-width: 100%; } }
+    body.rtl { direction: rtl; text-align: right; }
+    body.rtl .navbar, body.rtl .hero-grid, body.rtl .cards-grid, body.rtl .team-grid, body.rtl .strategy-block { direction: rtl; }
+    body.rtl .social-links { direction: ltr; } /* keep icons ltr direction for RTL */
+  </style>
+</head>
+<body>
+  <nav class="container"><div class="navbar"><div class="logo">HANAN<span>Digital</span> Solutions</div><div class="nav-controls"><div class="lang-switcher"><button class="lang-btn" data-lang="ar">AR</button><button class="lang-btn" data-lang="fr">FR</button><button class="lang-btn active" data-lang="en">EN</button></div><button class="darkmode-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button><a href="#contact" class="btn btn-outline" style="padding: 10px 24px;">Contact</a></div></div></nav>
+  <main>
+    <section class="hero"><div class="container hero-grid"><div class="hero-content" data-aos="fade-right"><div class="hero-badge" id="heroBadge"><i class="fas fa-microchip"></i> Fès | Dual-Expertise Agency</div><h1 id="heroTitle">Engineering + Growth: Intelligent Solutions for Fès</h1><p id="heroSub">From AI architecture to Google Maps dominance — we build, automate, and scale your business.</p><a href="#" id="openLeadBtn" class="btn btn-primary"><i class="fas fa-chalkboard-user"></i> <span id="ctaText">Free Technical & Growth Audit</span></a></div><div style="flex:0.9; text-align: center;" data-aos="fade-left"><div style="font-size: 8rem; color: var(--cyan); opacity: 0.3;"><i class="fas fa-chart-line"></i></div></div></div></section>
+    
+    <!-- Service Cards (Clickable) -->
+    <section class="section"><div class="container"><h2 class="section-title" id="servicesTitle" data-aos="fade-up">Solutions that grow your revenue</h2><p class="section-sub" id="servicesSub" data-aos="fade-up">Click any card to reveal your success strategy.</p><div class="cards-grid" id="servicesGrid"></div></div></section>
+    
+    <!-- Killer payment card -->
+    <div class="container" data-aos="fade-up"><div class="killer-card"><div class="killer-content"><div class="badge-cyan" id="killerBadge" style="display: inline-block; background: rgba(0,229,255,0.2); padding: 5px 12px; border-radius: 40px; margin-bottom: 20px;"><i class="fas fa-bolt"></i> Stop Losing Customers Over Cash</div><h2 id="killerTitle">💳 Small Change Digital Payment Solution</h2><p id="killerDesc1"><strong>Your customers can now pay 20–40 MAD directly from their mobile phone — no ATM needed.</strong></p><p id="killerDesc2">✅ Increase average ticket size +35% ✅ Reduce abandoned carts ✅ Secure payments</p><a href="#" id="demoLeadBtn" class="btn btn-primary" style="background: white; color: var(--deep-blue);">Activate now →</a></div><div style="position: absolute; right: 20px; bottom: 10px; opacity: 0.15; font-size: 7rem;"><i class="fas fa-mobile-alt"></i></div></div></div>
+    
+    <div class="container" data-aos="fade-up"><div class="metrics-grid"><div class="metric-item"><h3>10+</h3><p>Years Combined Expertise</p></div><div class="metric-item"><h3>99.9%</h3><p>System Uptime</p></div><div class="metric-item"><h3>AI-Powered</h3><p>Automation & Maps Growth</p></div></div></div>
+    
+    <!-- Team Section (Dual Expertise Popups) with Social Icons for Hanane -->
+    <section class="section"><div class="container"><h2 class="section-title" id="teamTitle" data-aos="fade-up">Meet Our Experts</h2><p class="section-sub" id="teamSub" data-aos="fade-up">Click on each profile to explore engineering feats & growth mastery.</p><div class="team-grid" id="teamGrid"></div></div></section>
+    
+    <section id="contact" class="section" style="padding-top: 0;"><div class="container"><h2 class="section-title" id="contactTitle" data-aos="fade-up">Let's grow your business — free consultation</h2><div class="contact-flex" data-aos="fade-up"><div class="contact-info"><h3><i class="fas fa-map-pin" style="color: var(--cyan);"></i> Hanan Digital Solutions</h3><p id="contactDesc">Based in Fès. Get a free technical & growth audit from our team.</p><div style="margin-bottom: 24px;"><p><i class="fas fa-phone-alt"></i> +212 6 01 63 50 71</p><p><i class="fas fa-envelope"></i> contact@hanandigital.ma</p></div><a href="https://wa.me/212645995456?text=Bonjour%20team%20Hanan" target="_blank" class="btn btn-primary" style="background: #25D366; color: white;"><i class="fab fa-whatsapp"></i> <span id="whatsappText">Book via WhatsApp</span></a><div style="margin-top: 30px;"><a href="#" id="footerLeadBtn" class="btn btn-primary" style="background: var(--deep-blue); color:white;"><span id="auditBtnText">Get a free audit →</span></a></div></div><div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.594114974915!2d-5.000758924279102!3d34.03313078091528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd9f8b6b1a9e3d8d%3A0x7f3f8b1a9e3d8d!2sF%C3%A8s%2C%20Morocco!4v1698682154967" loading="lazy"></iframe></div></div></div></section>
+  </main>
+  <footer><div class="container"><div class="trust-bar"><i class="fab fa-cc-visa"></i> <i class="fab fa-cc-mastercard"></i> <i class="fas fa-shield-alt"></i> <span>CMI Certified</span></div><p>© 2025 Hanan Digital Solutions — Intelligent Systems for Fès Businesses</p><div class="signature-line">✦ This website was engineered and designed by <span>Ahmed Hbaly</span> ✦</div></div></footer>
+  <a href="https://wa.me/212645995456?text=Bonjour%20Hanan%20Digital" class="float-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+  <!-- Strategy Modals (3) -->
+  <div id="strategyModal1" class="strategy-modal"><div class="modal-glass"><div class="modal-header"><h3 id="stratTitle1">📌 Google Maps Strategy</h3><div class="close-modal-icon" data-close="strat1">&times;</div></div><div class="modal-body" id="stratBody1"></div></div></div>
+  <div id="strategyModal2" class="strategy-modal"><div class="modal-glass"><div class="modal-header"><h3 id="stratTitle2">💳 Cash Gap Strategy</h3><div class="close-modal-icon" data-close="strat2">&times;</div></div><div class="modal-body" id="stratBody2"></div></div></div>
+  <div id="strategyModal3" class="strategy-modal"><div class="modal-glass"><div class="modal-header"><h3 id="stratTitle3">📊 AI Dashboard Strategy</h3><div class="close-modal-icon" data-close="strat3">&times;</div></div><div class="modal-body" id="stratBody3"></div></div></div>
+
+  <!-- Portfolio Modals for Team -->
+  <div id="portfolioHanane" class="portfolio-modal"><div class="modal-glass"><div class="modal-header"><h3>⚙️ Hanane Hbaly · Engineering Intelligence</h3><div class="close-modal-icon" data-close="portHanane">&times;</div></div><div class="modal-body" id="hananePortBody"></div></div></div>
+  <div id="portfolioAhmed" class="portfolio-modal"><div class="modal-glass"><div class="modal-header"><h3>📈 Ahmed Hbaly · Growth & Automation</h3><div class="close-modal-icon" data-close="portAhmed">&times;</div></div><div class="modal-body" id="ahmedPortBody"></div></div></div>
+
+  <!-- Lead Modal -->
+  <div id="leadModal" class="lead-modal"><div class="lead-modal-content"><span class="close-modal-icon" id="closeLeadModal" style="float:right;">&times;</span><h3 id="modalTitle">Free Technical & Growth Audit</h3><form id="leadForm"><div class="form-group"><input type="text" id="fullName" placeholder="Full Name" required></div><div class="form-group"><input type="tel" id="phone" placeholder="Phone Number" required></div><div class="form-group"><input type="email" id="email" placeholder="Email Address" required></div><div class="form-group"><select id="sector"><option>Restaurant</option><option>Car Rental</option><option>Retail/SME</option></select></div><div class="form-group"><textarea id="goalDesc" rows="2" placeholder="Your goal..."></textarea></div><button type="submit" class="submit-btn">Send Request</button></form></div></div>
+  <div id="successOverlay" class="success-overlay"><div class="success-card"><i class="fas fa-check-circle"></i><h2>Merci !</h2><p>Our team will contact you within 24h.</p><button id="closeSuccessBtn" class="btn btn-primary">Close</button></div></div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+    // Multi-language dictionaries
+    const langData = {
+      en: {
+        heroBadge:"Fès | Dual-Expertise Agency", heroTitle:"Engineering Success. Driving Growth. Without Borders", heroSub:"From AI architecture to Google Maps dominance — we build, automate, and scale your business.", ctaText:"Free Technical & Growth Audit", servicesTitle:"Solutions that grow your revenue", servicesSub:"Click any card to reveal your success strategy.", killerBadge:"Stop Losing Customers Over Cash", killerTitle:"💳 Small Change Digital Payment Solution", killerDesc1:"Your customers can now pay 20–40 MAD directly from their mobile phone — no ATM needed.", killerDesc2:"✅ Increase average ticket size +35% ✅ Reduce abandoned carts ✅ Secure payments", contactTitle:"Let's grow your business — free consultation", contactDesc:"Based in Fès. Get a free technical & growth audit from our team.", whatsappText:"Book via WhatsApp", auditBtnText:"Get a free audit →", modalTitle:"Free Audit", teamTitle:"Meet Our Experts", teamSub:"Click on each profile to explore engineering feats & growth mastery.",
+        strat1: { title:"📍 Google Maps & Fast Website", problem:"Being invisible on Google Maps means losing 10+ local customers daily. Your competitors appear first, you stay hidden.", solution:"Ahmed Hbaly (Google Certified) optimizes your ranking to appear in Top 3 results, increasing foot traffic by up to 10x. + fast website conversion." },
+        strat2: { title:"💳 E‑commerce & Small Payments (20-40 MAD)", problem:"The 'Cash Gap' issue: many customers leave because they only have card money but ATMs don't dispense less than 100 MAD.", solution:"Integrated payment gateway (Visa/MasterCard/CMI) accepting small amounts (20-40 MAD), recovering up to 35% of abandoned baskets." },
+        strat3: { title:"📊 AI Dashboard & Real-time Tracking", problem:"Managing logistics, inventory, and staff via paper or WhatsApp creates chaos, delays, and hidden costs.", solution:"Centralized AI dashboard that automates costs, tracks orders in real-time using PostGIS, and uses AI Chatbots to answer customer FAQs 24/7." },
+        hananePort: [{icon:"fa-microchip", txt:"FASGO Integrated Logistics: Microservices architecture, real-time tracking, thousands of concurrent requests."},{icon:"fa-heartbeat", txt:"Smart Health Prediction: Big Data & AI model predicting heart diseases with high accuracy."},{icon:"fa-cloud-upload-alt", txt:"Cloud Automation: Docker + FastAPI, LGTM stack, 99.9% uptime."},{icon:"fa-robot", txt:"Generative AI Agents: RAG & Llama 3 for instant support and data analysis."}],
+        ahmedPort: [{icon:"fa-map-marked-alt", txt:"Google Maps Specialist: 15+ businesses ranked Top 3, +300% foot traffic."},{icon:"fa-robot", txt:"AI Automation Agents: Bots reducing operational costs by 40%."},{icon:"fa-store", txt:"High-Conversion E‑commerce: Payment gateways, Moroccan & international cards."},{icon:"fa-chart-line", txt:"Data-Driven Marketing: ROI-focused Google Ads campaigns for SMEs."}]
+      },
+      fr: {
+        heroBadge:"Fès | Agence Double-Expertise", heroTitle:"Ingénierie du Succès. Accélérateur de Croissance. Sans Frontières.", heroSub:"De l'architecture IA à la domination Google Maps — nous construisons, automatisons et faisons croître.", ctaText:"Audit technique & croissance gratuit", servicesTitle:"Solutions qui font croître votre chiffre", servicesSub:"Cliquez sur une carte pour découvrir votre stratégie.", killerBadge:"Ne perdez plus de clients à cause du liquide", killerTitle:"💳 Paiement digital pour petits montants", killerDesc1:"Vos clients peuvent payer 20–40 MAD directement depuis leur mobile.", killerDesc2:"✅ Augmentez le panier moyen +35% ✅ Réduisez les abandons", contactTitle:"Consultation gratuite", contactDesc:"Basée à Fès. Audit technique et croissance gratuit.", whatsappText:"Réserver", auditBtnText:"Audit gratuit →", modalTitle:"Audit gratuit", teamTitle:"Rencontrez nos experts", teamSub:"Cliquez pour voir les exploits techniques et la maîtrise de la croissance.",
+        strat1: { title:"📍 Google Maps & Site Rapide", problem:"Être invisible sur Google Maps vous fait perdre 10+ clients locaux par jour.", solution:"Ahmed Hbaly (certifié Google) optimise votre classement Top 3, augmentant le trafic physique jusqu'à 10x. + site web rapide." },
+        strat2: { title:"💳 E‑commerce & Micro-paiements", problem:"Le 'Cash Gap' : les clients repartent car les DAB ne donnent pas moins de 100 MAD.", solution:"Passerelle de paiement intégrée (Visa/MasterCard/CMI) acceptant 20-40 MAD, récupérant jusqu'à 35% des paniers abandonnés." },
+        strat3: { title:"📊 Tableau de bord IA & Suivi", problem:"Gestion logistique via papier ou WhatsApp = chaos et coûts cachés.", solution:"Dashboard IA centralisé : automatisation des coûts, suivi PostGIS, Chatbots IA 24/7." },
+        hananePort: [{icon:"fa-microchip", txt:"FASGO Logistique : Microservices, suivi temps réel."},{icon:"fa-heartbeat", txt:"Prédiction santé : IA Big Data haute précision."},{icon:"fa-cloud-upload-alt", txt:"Automatisation cloud : Docker, FastAPI, 99.9% disponibilité."},{icon:"fa-robot", txt:"Agents IA générative : RAG & Llama 3."}],
+        ahmedPort: [{icon:"fa-map-marked-alt", txt:"Spécialiste Google Maps : +15 entreprises Top 3, +300% trafic."},{icon:"fa-robot", txt:"Agents d'automatisation : réduction coûts -40%."},{icon:"fa-store", txt:"E-commerce haut conversion : paiements intégrés."},{icon:"fa-chart-line", txt:"Marketing data-driven : ROI maximal."}]
+      },
+      ar: {
+        heroBadge:"فاس | وكالة الخبرة المزدوجة", heroTitle:"نصنع النجاح. نهندس النمو. بلا حدود.", heroSub:"من بنية الذكاء الاصطناعي إلى الهيمنة على خرائط جوجل — نبني، نأتمت، وننمي عملك.", ctaText:"تدقيق تقني ونمو مجاني", servicesTitle:"حلول تنمي إيراداتك", servicesSub:"انقر على أي بطاقة لاستكشاف استراتيجية النجاح", killerBadge:"لا تخسر زبوناً بسبب السيولة", killerTitle:"💳 حل الدفع الرقمي للمبالغ الصغيرة", killerDesc1:"يمكن لعملائك دفع 20-40 درهماً عبر الهاتف المحمول", killerDesc2:"✅ زيادة متوسط الفاتورة +35% ✅ تقليل السلال المهجورة", contactTitle:"لننمي عملك — استشارة مجانية", contactDesc:"مقرنا في فاس. احصل على تدقيق تقني ونمو مجاني", whatsappText:"احجز عبر واتساب", auditBtnText:"احصل على تدقيق مجاني ←", modalTitle:"تدقيق مجاني", teamTitle:"قابل خبراءنا", teamSub:"انقر لرؤية الإنجازات الهندسية وإتقان النمو",
+        strat1: { title:"📍 خرائط جوجل وموقع سريع", problem:"عدم الظهور على خرائط جوجل يخسرك 10+ زبون يومياً.", solution:"أحمد حبالي (معتمد من Google) يحسن ترتيبك للظهور ضمن أفضل 3 نتائج، مما يزيد حركة الزبائن حتى 10 أضعاف." },
+        strat2: { title:"💳 المتجر الإلكتروني والمدفوعات الصغيرة", problem:"فجوة السيولة: العملاء يغادرون لأن الصراف لا يصرف أقل من 100 درهم.", solution:"بوابة دفع متكاملة (فيزا/ماستركارد/CMI) تقبل المبالغ الصغيرة (20-40 درهماً)، تسترد حتى 35% من السلال المهجورة." },
+        strat3: { title:"📊 لوحة تحكم الذكاء الاصطناعي", problem:"إدارة الخدمات اللوجستية والمخزون بالورق أو واتساب تسبب فوضى.", solution:"لوحة تحكم مركزية تعتمد الذكاء الاصطناعي: أتمتة التكاليف، تتبع الطلبات بـ PostGIS، وروبوتات محادثة على مدار الساعة." },
+        hananePort: [{icon:"fa-microchip", txt:"نظام FASGO اللوجستي: الخدمات المصغرة، تتبع فوري."},{icon:"fa-heartbeat", txt:"التنبؤ الصحي: بيانات ضخمة وذكاء اصطناعي."},{icon:"fa-cloud-upload-alt", txt:"أتمتة سحابية: Docker، FastAPI، uptime 99.9%"},{icon:"fa-robot", txt:"وكلاء الذكاء التوليدي: RAG و Llama 3."}],
+        ahmedPort: [{icon:"fa-map-marked-alt", txt:"اختصاصي خرائط جوجل: تصدر 15+ نشاطاً تجارياً."},{icon:"fa-robot", txt:"وكلاء أتمتة: خفض التكاليف 40%"},{icon:"fa-store", txt:"منصات بيع عالية التحويل: بوابات دفع متكاملة."},{icon:"fa-chart-line", txt:"تسويق مبني على البيانات: عائد استثمار مرتفع."}]
+      }
+    };
+    let currentLang = "en";
+    function updateLanguage(lang) {
+      currentLang = lang;
+      const d = langData[lang];
+      document.getElementById("heroBadge").innerHTML = `<i class="fas fa-microchip"></i> ${d.heroBadge}`;
+      document.getElementById("heroTitle").innerText = d.heroTitle;
+      document.getElementById("heroSub").innerText = d.heroSub;
+      document.getElementById("ctaText").innerText = d.ctaText;
+      document.getElementById("servicesTitle").innerText = d.servicesTitle;
+      document.getElementById("servicesSub").innerText = d.servicesSub;
+      document.getElementById("killerBadge").innerHTML = `<i class="fas fa-bolt"></i> ${d.killerBadge}`;
+      document.getElementById("killerTitle").innerHTML = d.killerTitle;
+      document.getElementById("killerDesc1").innerHTML = d.killerDesc1;
+      document.getElementById("killerDesc2").innerHTML = d.killerDesc2;
+      document.getElementById("contactTitle").innerText = d.contactTitle;
+      document.getElementById("contactDesc").innerText = d.contactDesc;
+      document.getElementById("whatsappText").innerText = d.whatsappText;
+      document.getElementById("auditBtnText").innerHTML = d.auditBtnText;
+      document.getElementById("modalTitle").innerText = d.modalTitle;
+      document.getElementById("teamTitle").innerText = d.teamTitle;
+      document.getElementById("teamSub").innerText = d.teamSub;
+      // update strategy modal contents
+      document.getElementById("stratTitle1").innerText = d.strat1.title;
+      document.getElementById("stratTitle2").innerText = d.strat2.title;
+      document.getElementById("stratTitle3").innerText = d.strat3.title;
+      document.getElementById("stratBody1").innerHTML = `<div class="strategy-block"><div class="strategy-icon" style="color:#e53e3e;"><i class="fas fa-exclamation-triangle"></i></div><div class="strategy-text"><h4>⚠️ The Problem</h4><p>${d.strat1.problem}</p></div></div><div class="strategy-block"><div class="strategy-icon" style="color:#00b894;"><i class="fas fa-check-circle"></i></div><div class="strategy-text"><h4>✅ The Hanan Solution</h4><p>${d.strat1.solution}</p><div class="roi-badge"><i class="fas fa-chart-simple"></i> ROI: up to 10x foot traffic</div></div></div>`;
+      document.getElementById("stratBody2").innerHTML = `<div class="strategy-block"><div class="strategy-icon" style="color:#e53e3e;"><i class="fas fa-ban"></i></div><div class="strategy-text"><h4>⚠️ The Problem</h4><p>${d.strat2.problem}</p></div></div><div class="strategy-block"><div class="strategy-icon" style="color:#00b894;"><i class="fas fa-credit-card"></i></div><div class="strategy-text"><h4>✅ The Hanan Solution</h4><p>${d.strat2.solution}</p><div class="roi-badge"><i class="fas fa-percent"></i> Recover 35% abandoned baskets</div></div></div>`;
+      document.getElementById("stratBody3").innerHTML = `<div class="strategy-block"><div class="strategy-icon" style="color:#e53e3e;"><i class="fas fa-chaos"></i></div><div class="strategy-text"><h4>⚠️ The Problem</h4><p>${d.strat3.problem}</p></div></div><div class="strategy-block"><div class="strategy-icon" style="color:#00b894;"><i class="fas fa-chart-line"></i></div><div class="strategy-text"><h4>✅ The Hanan Solution</h4><p>${d.strat3.solution}</p><div class="roi-badge"><i class="fas fa-robot"></i> 24/7 automation + real-time tracking</div></div></div>`;
+      // update team & portfolio
+      renderTeam(lang);
+      renderPortfolio(lang);
+      document.body.classList.toggle("rtl", lang === "ar");
+      document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.remove("active"));
+      document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add("active");
+    }
+    function renderTeam(lang) {
+      // Fixed social icons for Hanane (LinkedIn + GitHub)
+      const hananeSocial = `<div class="social-links"><a href="https://www.linkedin.com/in/hbaly-hanane-790646257" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://github.com/hanane-hbaly" target="_blank" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a></div>`;
+      const teamContainer = document.getElementById("teamGrid");
+      teamContainer.innerHTML = `
+        <div class="team-card" data-team="hanane"><div class="team-avatar"><i class="fas fa-microchip"></i></div><h3>Hanane Hbaly</h3><div class="team-title">Lead Engineer & AI Architect</div><div class="team-bio"><p>Software Engineer, Master's Data Science. FastAPI, Microservices, AI.</p></div><div class="team-badges"><span>FastAPI</span><span>Llama 3</span><span>RAG</span></div>${hananeSocial}</div>
+        <div class="team-card" data-team="ahmed"><div class="team-avatar"><i class="fas fa-chart-line"></i></div><h3>Ahmed Hbaly</h3><div class="team-title">Automation & Growth Specialist</div><div class="team-bio"><p>Google Certified. Maps optimization, AI Agents, ROI-driven marketing.</p></div><div class="team-badges"><span>Google Maps</span><span>AI Agents</span><span>Growth Hacking</span></div></div>
+      `;
+      document.querySelectorAll("[data-team='hanane']").forEach(c => c.addEventListener("click", (e) => { if(!e.target.closest('.social-icon')) document.getElementById("portfolioHanane").style.display = "flex"; }));
+      document.querySelectorAll("[data-team='ahmed']").forEach(c => c.addEventListener("click", () => document.getElementById("portfolioAhmed").style.display = "flex"));
+    }
+    function renderPortfolio(lang) {
+      const d = langData[lang];
+      document.getElementById("hananePortBody").innerHTML = d.hananePort.map(p => `<div class="strategy-block"><div class="strategy-icon"><i class="fas ${p.icon}"></i></div><div class="strategy-text"><p>${p.txt}</p></div></div>`).join("");
+      document.getElementById("ahmedPortBody").innerHTML = d.ahmedPort.map(p => `<div class="strategy-block"><div class="strategy-icon"><i class="fas ${p.icon}"></i></div><div class="strategy-text"><p>${p.txt}</p></div></div>`).join("");
+    }
+    function renderServices() {
+      const servicesArr = [
+        { icon:"fa-map-marker-alt", titleKey:"strat1", descKey:"strat1", value:"📈 +10x visibility" },
+        { icon:"fa-cart-shopping", titleKey:"strat2", descKey:"strat2", value:"💰 +35% recovered revenue" },
+        { icon:"fa-chart-line", titleKey:"strat3", descKey:"strat3", value:"🤖 24/7 automation" }
+      ];
+      const container = document.getElementById("servicesGrid");
+      container.innerHTML = servicesArr.map((s, idx) => `<div class="service-card" data-card="${idx+1}"><div class="service-icon"><i class="fas ${s.icon}"></i></div><h3>${langData[currentLang][s.titleKey].title}</h3><p>${langData[currentLang][s.titleKey].problem.substring(0, 80)}...</p><div class="business-value">${s.value}</div></div>`).join("");
+      document.querySelectorAll("[data-card='1']").forEach(c => c.addEventListener("click", () => document.getElementById("strategyModal1").style.display = "flex"));
+      document.querySelectorAll("[data-card='2']").forEach(c => c.addEventListener("click", () => document.getElementById("strategyModal2").style.display = "flex"));
+      document.querySelectorAll("[data-card='3']").forEach(c => c.addEventListener("click", () => document.getElementById("strategyModal3").style.display = "flex"));
+    }
+    document.querySelectorAll(".lang-btn").forEach(btn => btn.addEventListener("click", () => { updateLanguage(btn.dataset.lang); renderServices(); }));
+    updateLanguage("en");
+    renderServices();
+    // Close modals logic
+    document.querySelectorAll(".close-modal-icon").forEach(el => el.addEventListener("click", (e) => {
+      const modalId = e.target.closest(".strategy-modal, .portfolio-modal, .lead-modal");
+      if(modalId) modalId.style.display = "none";
+    }));
+    window.addEventListener("click", (e) => { if(e.target.classList.contains("strategy-modal") || e.target.classList.contains("portfolio-modal") || e.target.classList.contains("lead-modal")) e.target.style.display = "none"; });
+    // Lead modal
+    const leadModal = document.getElementById("leadModal");
+    document.querySelectorAll("#openLeadBtn, #demoLeadBtn, #footerLeadBtn").forEach(btn => btn.addEventListener("click", (e) => { e.preventDefault(); leadModal.style.display = "flex"; }));
+    document.getElementById("closeLeadModal").addEventListener("click", () => leadModal.style.display = "none");
+    document.getElementById("leadForm").addEventListener("submit", (e) => { e.preventDefault(); leadModal.style.display = "none"; document.getElementById("successOverlay").style.display = "flex"; setTimeout(() => document.getElementById("successOverlay").style.display = "none", 4000); });
+    document.getElementById("closeSuccessBtn").onclick = () => document.getElementById("successOverlay").style.display = "none";
+    const darkToggle = document.getElementById("darkModeToggle");
+    darkToggle.addEventListener("click", () => { document.body.classList.toggle("dark-mode"); darkToggle.innerHTML = document.body.classList.contains("dark-mode") ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; });
+  </script>
+</body>
+</html>
